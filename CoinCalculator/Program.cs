@@ -35,6 +35,12 @@ namespace CoinCalculator
                     Console.WriteLine();
                 }
 
+                stopwatch = Stopwatch.StartNew();
+                calculatePossibilities3(required);
+                stopwatch.Stop();
+                Console.WriteLine("Time elapsed to proccess using smart nested loop strategy: " + stopwatch.ElapsedMilliseconds + "ms");
+                Console.WriteLine();
+
                 Console.WriteLine("Write a number of cents to proccess or a letter to finish: ");
                 valueRead = Console.ReadLine();
             }
@@ -197,6 +203,29 @@ namespace CoinCalculator
                                         for (int m5 = 0; m5 <= required; m5 += 5)
                                             for (int m2 = 0; m2 <= required; m2 += 2)
                                                 for (int m1 = 0; m1 <= required; m1 += 1)
+                                                    if (m5000 + m2000 + m1000 + m500 + m50 + m20 + m10 + m5 + m2 + m1 == required)
+                                                        possibilitiesFound++;
+
+            Console.WriteLine("Total possibilities found: " + possibilitiesFound);
+        }
+
+        /// <summary>
+        /// Calculate possibilities using smart nested loops
+        /// </summary>
+        /// <param name="required">Amount of cents required</param>
+        public static void calculatePossibilities3(int required)
+        {
+            int possibilitiesFound = 0;
+            for (int m5000 = 0; m5000 <= required; m5000 += 5000)
+                for (int m2000 = 0; (m5000 + m2000) <= required; m2000 += 2000)
+                    for (int m1000 = 0; (m5000 + m2000 + m1000) <= required; m1000 += 1000)
+                        for (int m500 = 0; (m5000 + m2000 + m1000 + m500) <= required; m500 += 500)
+                            for (int m50 = 0; (m5000 + m2000 + m1000 + m500 + m50) <= required; m50 += 50)
+                                for (int m20 = 0; (m5000 + m2000 + m1000 + m500 + m50 + m20) <= required; m20 += 20)
+                                    for (int m10 = 0; (m5000 + m2000 + m1000 + m500 + m50 + m20 + m10) <= required; m10 += 10)
+                                        for (int m5 = 0; (m5000 + m2000 + m1000 + m500 + m50 + m20 + m10 + m5) <= required; m5 += 5)
+                                            for (int m2 = 0; (m5000 + m2000 + m1000 + m500 + m50 + m20 + m10 + m5 + m2) <= required; m2 += 2)
+                                                for (int m1 = 0; (m5000 + m2000 + m1000 + m500 + m50 + m20 + m10 + m5 + m2 + m1) <= required; m1 += 1)
                                                     if (m5000 + m2000 + m1000 + m500 + m50 + m20 + m10 + m5 + m2 + m1 == required)
                                                         possibilitiesFound++;
 
